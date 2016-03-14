@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# exec /tmp/perftest/perf-test.sh
-exec echo 'hello'
