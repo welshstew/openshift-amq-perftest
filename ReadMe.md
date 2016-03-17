@@ -31,20 +31,9 @@ for i in _ {a..z} {A..Z}; do
 done
 
 
-sysTest.propsConfigFile
-sysTest.clientPrefix
-sysTest.numClients
-sysTest.totalDests
-sysTest.destDistro
-sysTest.reportDir
-sysTest.reportName
-sysTest.reportType
-sysTest.samplers
-sysTest.spiClass
+## Build with source2image
 
-producer.sessTransacted=false
-producer.sessAckMode
-producer.commitAfterXMsgs
-producer.destName
-producer.destComposite
-producer.deliveryMode
+	s2i build git@github.com:welshstew/openshift-amq-perftest.git registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:latest test-ruby-app
+
+
+	

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# This should copy the perftest/pom.xml file into the container
+
 SRCCONF=/tmp/src/configuration
 SRCLIB=/tmp/src/lib
 SRCBIN=/tmp/src
