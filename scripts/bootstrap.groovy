@@ -28,10 +28,18 @@ env.each {
     }
 }
 
+def execString = ""
+
 if(env.get("AMQTEST_TYPE") == 'producer'){
     //'activemq-perf:producer'
-    println "mvn activemq-perf:producer " + variablesToPass.join(" ")
+    execString = "mvn activemq-perf:producer " + variablesToPass.join(" ")
 }else{
- //   'activemq-perf:consumer'
-    println "mvn activemq-perf:consumer " + variablesToPass.join(" ")
+    execString = "mvn activemq-perf:consumer " + variablesToPass.join(" ")
 }
+
+def process=new ProcessBuilder(execString).redirectErrorStream(true).start()
+process.inputStream.eachLine {println it}
+
+
+
+
