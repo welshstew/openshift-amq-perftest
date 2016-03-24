@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  annotations:
+    openshift.io/deployer-pod.name: openshift-amq-perftest-1-deploy
+    openshift.io/deployment-config.latest-version: "1"
+    openshift.io/deployment-config.name: openshift-amq-perftest
+    openshift.io/deployment.phase: Complete
+    openshift.io/encoded-deployment-config: |
+      {"kind":"DeploymentConfig","apiVersion":"v1","metadata":{"name":"openshift-amq-perftest","namespace":"symphony-eu-bp","selfLink":"/oapi/v1/namespaces/symphony-eu-bp/deploymentconfigs/openshift-amq-perftest","uid":"b1e9e08e-f1de-11e5-a955-52540013d96e","resourceVersion":"11703","creationTimestamp":"2016-03-24T16:37:27Z","labels":{"app":"openshift-amq-perftest"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{}},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["openshift-amq-perftest"],"from":{"kind":"ImageStreamTag","name":"openshift-amq-perftest:latest"},"lastTriggeredImage":"172.30.37.42:5000/symphony-eu-bp/openshift-amq-perftest@sha256:69196fb3a5d7ba30ca90d7981669165c99165820ae1aac494f4d8890c80ba77a"}}],"replicas":1,"selector":{"app":"openshift-amq-perftest","deploymentconfig":"openshift-amq-perftest"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"openshift-amq-perftest","deploymentconfig":"openshift-amq-perftest"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"containers":[{"name":"openshift-amq-perftest","image":"172.30.37.42:5000/symphony-eu-bp/openshift-amq-perftest@sha256:69196fb3a5d7ba30ca90d7981669165c99165820ae1aac494f4d8890c80ba77a","ports":[{"containerPort":8778,"protocol":"TCP"}],"env":[{"name":"FACTORY_BROKERURL","value":"tcp://broker-amq-tcp:61616"},{"name":"FACTORY_PASSWORD","value":"admin"},{"name":"FACTORY_USERNAME","value":"admin"},{"name":"MAVEN_OPTS","value":"-Xmx2g -Xms1g"}],"resources":{},"terminationMessagePath":"/dev/termination-log","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{}}}},"status":{"latestVersion":1,"details":{"causes":[{"type":"ImageChange","imageTrigger":{"from":{"kind":"DockerImage","name":"172.30.37.42:5000/symphony-eu-bp/openshift-amq-perftest:latest"}}}]}}}
+  creationTimestamp: 2016-03-24T16:37:51Z
+  generation: 2
+  labels:
+    app: openshift-amq-perftest
+    openshift.io/deployment-config.name: openshift-amq-perftest
+  name: openshift-amq-perftest-1
+  namespace: symphony-eu-bp
+  resourceVersion: "11744"
+  selfLink: /api/v1/namespaces/symphony-eu-bp/replicationcontrollers/openshift-amq-perftest-1
+  uid: c0188f6f-f1de-11e5-a955-52540013d96e
+spec:
+  replicas: 1
+  selector:
+    app: openshift-amq-perftest
+    deployment: openshift-amq-perftest-1
+    deploymentconfig: openshift-amq-perftest
+  template:
+    metadata:
+      annotations:
+        openshift.io/deployment-config.latest-version: "1"
+        openshift.io/deployment-config.name: openshift-amq-perftest
+        openshift.io/deployment.name: openshift-amq-perftest-1
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: openshift-amq-perftest
+        deployment: openshift-amq-perftest-1
+        deploymentconfig: openshift-amq-perftest
+    spec:
+      containers:
+      - env:
+        - name: FACTORY_BROKERURL
+          value: tcp://broker-amq-tcp:61616
+        - name: FACTORY_PASSWORD
+          value: admin
+        - name: FACTORY_USERNAME
+          value: admin
+        - name: MAVEN_OPTS
+          value: -Xmx2g -Xms1g
+        image: 172.30.37.42:5000/symphony-eu-bp/openshift-amq-perftest@sha256:69196fb3a5d7ba30ca90d7981669165c99165820ae1aac494f4d8890c80ba77a
+        imagePullPolicy: Always
+        name: openshift-amq-perftest
+        ports:
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  observedGeneration: 2
+  replicas: 1

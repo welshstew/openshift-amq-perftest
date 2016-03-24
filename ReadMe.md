@@ -34,7 +34,8 @@ done
 ## Plain Old Docker Build
 	
 	docker build -t welshstew/openshift-amq-perftest:1.0 .
-	
 
 
-	
+## Openshift build/run
+
+	oc new-app https://github.com/welshstew/openshift-amq-perftest.git -e FACTORY_BROKERURL="tcp://broker-amq-tcp:61616" -e FACTORY_USERNAME="admin" -e FACTORY_PASSWORD="admin" -e MAVEN_OPTS="-Xmx2g -Xms1g" --strategy=docker
