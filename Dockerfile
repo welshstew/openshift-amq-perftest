@@ -1,8 +1,9 @@
-FROM welshstew/fis-groovy-openshift:latest
+FROM welshstew/fis-groovy-openshift:1.0
 
-ADD configuration/settings.xml /tmp/settings.xml
+ENV AMQTEST_TYPE producer
 
-ADD scripts/bootstrap.groovy /tmp/bootstrap.groovy
+ADD configuration/* /tmp
+ADD scripts/* /tmp
 
 WORKDIR /tmp
 
