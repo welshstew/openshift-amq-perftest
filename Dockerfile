@@ -1,11 +1,9 @@
-FROM registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:latest
+FROM welshstew/fis-groovy-openshift:latest
 
-MAINTAINER Stu <stuart.winchester@gmail.com>
+ADD configuration/settings.xml /tmp/settings.xml
 
-USER root
+ADD scripts/bootstrap.groovy /tmp/bootstrap.groovy
 
-ADD script/run.sh /tmp/run.sh
-ADD pom.xml /tmp/pom.xml
-RUN chmod +x /tmp/run.sh
+WORKDIR /tmp
 
-CMD ["/tmp/run.sh"]
+CMD ["groovy", "bootstrap.groovy"]
