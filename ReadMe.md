@@ -31,9 +31,10 @@ for i in _ {a..z} {A..Z}; do
 done
 
 
-## Build with source2image
-
-	s2i build git@github.com:welshstew/openshift-amq-perftest.git registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:latest test-ruby-app
+## Plain Old Docker Build
+	
+	docker build -t welshstew/openshift-amq-perftest:1.0 .
+	
 
 
 	
