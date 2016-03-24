@@ -21,6 +21,7 @@
 
     <properties>
         <fuse.version>6.2.1.redhat-084</fuse.version>
+        <activemq.version>5.7.0</activemq.version>
         <fabric8.version>2.2.0.redhat-079</fabric8.version>
         <fabric8.dockerUser>fabric8/</fabric8.dockerUser>
         <docker.from>jboss-fuse-6/fis-java-openshift:1.0</docker.from>
@@ -28,46 +29,18 @@
         <docker.maven.plugin.version>0.13.6</docker.maven.plugin.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- fabric8 bom must be before fabric8 bom -->
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-project-bom-with-platform-deps</artifactId>
-                <version>${fabric8.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.fuse.bom</groupId>
-                <artifactId>jboss-fuse-parent</artifactId>
-                <version>${fuse.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-model</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.activemq.tooling</groupId>
                     <artifactId>maven-activemq-perf-plugin</artifactId>
-                    <!--<version>${activemq.version}</version>-->
+                    <version>${activemq.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.activemq.tooling</groupId>
                     <artifactId>maven-activemq-plugin</artifactId>
-                    <!--<version>${activemq.version}</version>-->
+                    <version>${activemq.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
