@@ -28,16 +28,30 @@ env.each {
     }
 }
 
+// Build the maven run command
+
 def execString = ""
+def execList = []
+
+execList.add("mvn")
 
 if(env.get("AMQTEST_TYPE") == 'producer'){
     //'activemq-perf:producer'
-    execString = "mvn activemq-perf:producer " + variablesToPass.join(" ")
+    execString = "mvn activemq-perf:producer" + variablesToPass.join(" ")
+    execList.add("activemq-perf:producer")
+
 }else{
-    execString = "mvn activemq-perf:consumer " + variablesToPass.join(" ")
+    execString = "mvn activemq-perf:consumer" + variablesToPass.join(" ")
+    execList.add("activemq-perf:consumer")
 }
 
-def process=new ProcessBuilder(execString).redirectErrorStream(true).start()
+execList.add("--settings")
+execList.add("/tmp/settings.xml")
+execList.addAll(variablesToPass)
+
+println execString
+
+def process= new ProcessBuilder(execList).redirectErrorStream(true).start()
 process.inputStream.eachLine {println it}
 
 
