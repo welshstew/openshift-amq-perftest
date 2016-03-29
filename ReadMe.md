@@ -1,11 +1,10 @@
 # openshift-amq-perftest
 
-Something with maven in it, and a pom in order to run amq perf tests.
+Based on [https://github.com/welshstew/fis-groovy-openshift](https://github.com/welshstew/fis-groovy-openshift), a Docker Image containing jdk8, groovy, and maven.
 
-The base java-fis image comes with maven pre-bundled.  So hoping to build this from s2i.
+### What does it do?
 
-
-	oc new-app https://github.com/welshstew/openshift-amq-perftest.git --strategy=docker --name=maven-pod
+Uses groovy to parse a number of environment variables and ensures these are passed to the amq perf tests plugin.  For more information on the perf-test plugin go to [http://activemq.apache.org/activemq-performance-module-users-manual.html](http://activemq.apache.org/activemq-performance-module-users-manual.html)
 
 In temp directory:
 
@@ -13,6 +12,7 @@ In temp directory:
 
 	mvn activemq-perf:producer -Dfactory.brokerURL=tcp://broker-amq-tcp:61616 -Dfactory.userName=admin -Dfactory.password=admin
 
+Please see the DockerFile and the defaults.properties for the environment variables.
 
 ## TODO:
 
@@ -20,16 +20,6 @@ In temp directory:
 - 1 replication controller for the activemq producer
 - 1 replication controller for the activemq consumer
 - write some bash to loop over the sysTest, producer, consumer envivronment variables and construct the run command
-
-- for i in _ {a..z} {A..Z}; do eval "echo \${!$i@}" ; done | xargs printf "%s\n"
-
-for i in _ {a..z} {A..Z}; do
-   for var in `eval echo "\\${!$i@}"`; do
-      echo "$var=${!var}"
-      # you can test if $var matches some criteria and put it in the file or ignore
-   done 
-done
-
 
 ## Plain Old Docker Build
 	

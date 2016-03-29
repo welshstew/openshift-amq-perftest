@@ -45,6 +45,8 @@ spec:
           value: admin
         - name: FACTORY_USERNAME
           value: admin
+        - name: AMQTEST_TYPE
+          value: producer  
         - name: MAVEN_OPTS
           value: -Xmx2g -Xms1g
         image: 172.30.37.42:5000/symphony-eu-bp/openshift-amq-perftest@sha256:69196fb3a5d7ba30ca90d7981669165c99165820ae1aac494f4d8890c80ba77a
@@ -56,7 +58,7 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
       dnsPolicy: ClusterFirst
-      restartPolicy: Always
+      restartPolicy: Never
       securityContext: {}
       terminationGracePeriodSeconds: 30
 status:
