@@ -1,6 +1,6 @@
 # openshift-amq-perftest
 
-Based on [https://github.com/welshstew/fis-groovy-openshift](https://github.com/welshstew/fis-groovy-openshift), a Docker Image containing jdk8, groovy, and maven.
+Based on [https://github.com/welshstew/fis-groovy-openshift](https://github.com/welshstew/fis-groovy-openshift), a Docker Image containing jdk8, groovy, and maven.  This groovy stuff is now embedded in this image.
 
 ### What does it do?
 
@@ -14,7 +14,20 @@ In temp directory:
 
 Please see the DockerFile and the defaults.properties for the environment variables.
 
+### Testing locally (without having a pod in openshift - and without groovy..!)
+
+See the "defaults.properties" or [http://activemq.apache.org/activemq-performance-module-users-manual.html](http://activemq.apache.org/activemq-performance-module-users-manual.html) to look for command line parameters to run
+
+	export MAVEN_OPTS="-Xmx2g -Xms1g"
+	cd configuration
+	mvn activemq-perf:producer --settings settings.xml 
+	mvn activemq-perf:consumer --settings settings.xml 
+
+After completion an xml report will be generated in the directory.
+
 ## TODO:
+
+- note - jobs are not available in OSE3 - so we can't make a container just spin up, do a job, and die... :(
 
 - Create a template with 2 replication controllers.  Ensure the replication controller allows the pod to die cleanly (and not recreate it on death)
 - 1 replication controller for the activemq producer
@@ -24,7 +37,6 @@ Please see the DockerFile and the defaults.properties for the environment variab
 ## Plain Old Docker Build
 	
 	docker build -t welshstew/openshift-amq-perftest:1.0 .
-
 
 ## Openshift build/run
 
